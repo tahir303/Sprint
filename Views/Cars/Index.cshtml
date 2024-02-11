@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Car_Management.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+@if (User.IsInRole("Admin"))
+{
+    <h1>Hii Admin</h1>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+@* <div>
+    <form asp-controller="Cars" asp-action="Search" method="get">
+        <p>
+            Search Cars: <input type="text" name="searchString" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+</div> *@
+<form asp-controller="Cars" asp-action="SearchAll" method="get">
+    <div>
+        <label for="searchTerm">Search Term:</label>
+        <input type="text" id="searchTerm" name="searchTerm" />
+        <label for="columnName">Search By:</label>
+        <select id="columnName" name="columnName">
+            <option value="Model">Model</option>
+            <option value="Price">Price</option>
+            <option value="CarType">CarType</option>
+            <option value="manufacturer">Manufacturer</option>
+        </select>
+        <button type="submit">Search</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Engine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BHP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarTransmissionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mileage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirBagDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BootSpace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarType.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Engine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BHP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarTransmissionType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mileage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AirBagDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BootSpace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    }
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
