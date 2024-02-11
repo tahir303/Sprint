@@ -1,0 +1,52 @@
+﻿@* @using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <h1>Hii Admin</h1>
+    
+}
+else if (User.IsInRole("Customer"))
+{
+    <h1>Hii Customer</h1>
+} *@
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+
+    ViewData["Title"] = "Home Page";
+
+}
+@if (User.IsInRole("Admin"))
+{
+    <h1>Hii Admin</h1>
+
+}
+else if (User.IsInRole("Customer"))
+{
+    <h1>Hii Customer</h1>
+}
+
+
+<style>
+    body {
+        width: auto;
+        height: auto;
+        background-image: url('https://img.freepik.com/premium-photo/car-driving-through-beautiful-roada-car-driving-through-beautiful-roada-closeup-shot-mode_912214-10347.jpg?w=826');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+<h1 style="color:white;text-align:center;padding-top:68px;font-family:Garamond;">Car Information Management System</h1>
+<h2 style=" color:white;text-align:right;position:relative;font-family:Garamond">"Get behind the wheels of excitement"</h2>
